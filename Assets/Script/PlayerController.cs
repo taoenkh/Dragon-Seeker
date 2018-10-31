@@ -10,19 +10,29 @@ public class PlayerController : Unit {
 	private bool bowCollected;
 	private Transform bulletSpawn;
 
-
+    public Slider hpbar;
     public Text hpText;
     private int hp;
     public int dmg;
 
-	// Use this for initialization
-	public override void Start () {
+    public void set_hpbar() {
+        hpbar.minValue = 0;
+        hpbar.maxValue = 100;
+        hpbar.value = hpbar.maxValue;
+    }
+    public void reduce_hpbar() {
+        hpbar.value = hpbar.value - 1;
+    }
+
+    // Use this for initialization
+    public override void Start () {
 		bowCollected = false;
         hp = 100;
         if (dmg <= 0) {
             dmg = 10;
         }
-        
+
+        set_hpbar();
         show_hp();
         SC = GameObject.Find("SceneController");
     }
@@ -80,6 +90,7 @@ public class PlayerController : Unit {
         {
             decrease_hp();
             show_hp();
+            reduce_hpbar();
         }
     }
 

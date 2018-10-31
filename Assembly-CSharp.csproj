@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{009DB5B7-21C6-E6D6-5E8B-FD44476978CC}</ProjectGuid>
+    <ProjectGuid>{48B5F88A-0DDD-78F4-F9CD-3F158374FCDF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -62,16 +62,16 @@
      <Compile Include="Assets\Script\Unit.cs" />
      <Compile Include="Assets\Script\Zombie.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>E:/UCI Irvine 2018 fall/CS 113/Git_of_Team/Dragon-Seeker-master/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>E:/UCI Irvine 2018 fall/CS 113/CS113_Project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>E:/UCI Irvine 2018 fall/CS 113/Git_of_Team/Dragon-Seeker-master/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>E:/UCI Irvine 2018 fall/CS 113/CS113_Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>E:/UCI Irvine 2018 fall/CS 113/Git_of_Team/Dragon-Seeker-master/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>E:/UCI Irvine 2018 fall/CS 113/CS113_Project/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>E:/UCI Irvine 2018 fall/CS 113/Git_of_Team/Dragon-Seeker-master/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>E:/UCI Irvine 2018 fall/CS 113/CS113_Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
