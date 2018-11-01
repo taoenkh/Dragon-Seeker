@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff971e646dbb2476aaf8e8537e92190d, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  weaponType: {fileID: 1556246741124104, guid: 9c6e6c98d79a94526ae79f38d2db3124, type: 2}
+  bulletObject: {fileID: 1463683255404626, guid: ec35cbc90bf82495fab9e0a984ba325d,
+    type: 2}
+  fireinterval: 0.25
+  audio: {fileID: 0}
+  damage: 0
