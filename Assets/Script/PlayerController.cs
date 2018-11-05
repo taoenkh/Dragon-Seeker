@@ -18,6 +18,11 @@ public class PlayerController : Unit
     public Text hpText;
     private int hp;
     public int dmg;
+    private Material p_material;
+    private Material objColor;
+
+    public bool isSlowDown;
+    public float timeCount;
 
     public void set_hpbar()
     {
@@ -27,7 +32,7 @@ public class PlayerController : Unit
     }
     public void reduce_hpbar()
     {
-        hpbar.value = hpbar.value - 1;
+        hpbar.value = hpbar.value - dmg;
     }
 
     // Use this for initialization
@@ -43,6 +48,11 @@ public class PlayerController : Unit
         set_hpbar();
         show_hp();
         SC = GameObject.Find("SceneController");
+
+        isSlowDown = false;
+        timeCount = 0f;
+        objColor = gameObject.GetComponent<Renderer>().material;
+        p_material = Resources.Load("/Materials/Poison", typeof(Material)) as Material;
     }
 
     // Update is called once per frame
@@ -65,6 +75,19 @@ public class PlayerController : Unit
         if (hp <= 0)
         {
             SC.GetComponent<SceneController>().GameOver.Invoke();
+        }
+
+        if (isSlowDown)
+        {
+            timeCount += Time.deltaTime;
+            GetComponent<Renderer>().material= p_material;
+            if (timeCount >= 4)
+            {
+                timeCount = 0f;
+                isSlowDown = false;
+                speed = speed * 2;
+                GetComponent<Renderer>().material= objColor;
+            }
         }
     }
 
@@ -126,6 +149,8 @@ public class PlayerController : Unit
     public void decrease_hp()
     {
         hp = hp - dmg;
+        if (hp < 0) hp = 0;
+        //Debug.Log("called "+hp.ToString() + " blodd");
     }
 
     public void increase_hp()

@@ -7,6 +7,8 @@ TagManager:
   - Obstacle
   - Item
   - Enemy
+  - Marsh
+  - Spike
   layers:
   - Default
   - TransparentFX
