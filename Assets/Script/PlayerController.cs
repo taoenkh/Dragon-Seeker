@@ -18,11 +18,16 @@ public class PlayerController : Unit
     public Text hpText;
     private int hp;
     public int dmg;
+
     private Material p_material;
+    private Material f_material;
     private Material objColor;
 
     public bool isSlowDown;
-    public float timeCount;
+    public float timeCountS;
+
+    public bool isFrozen;
+    public float timeCountF;
 
     public void set_hpbar()
     {
@@ -50,9 +55,14 @@ public class PlayerController : Unit
         SC = GameObject.Find("SceneController");
 
         isSlowDown = false;
-        timeCount = 0f;
+        timeCountF = 0f;
+    
+        isFrozen = false;
+        timeCountS = 0f;
+
         objColor = gameObject.GetComponent<Renderer>().material;
-        p_material = Resources.Load("/Materials/Poison", typeof(Material)) as Material;
+        p_material = Resources.Load("Poison", typeof(Material)) as Material;
+        f_material = Resources.Load("Frozen", typeof(Material)) as Material;
     }
 
     // Update is called once per frame
@@ -79,14 +89,27 @@ public class PlayerController : Unit
 
         if (isSlowDown)
         {
-            timeCount += Time.deltaTime;
-            GetComponent<Renderer>().material= p_material;
-            if (timeCount >= 4)
+            timeCountS += Time.deltaTime;
+            GetComponent<Renderer>().material = p_material;
+            if (timeCountS >= 4)
             {
-                timeCount = 0f;
+                timeCountS = 0f;
                 isSlowDown = false;
-                speed = speed * 2;
-                GetComponent<Renderer>().material= objColor;
+                speed = 3;
+                GetComponent<Renderer>().material = objColor;
+            }
+        }
+
+        if (isFrozen)
+        {
+            timeCountF += Time.deltaTime;
+            GetComponent<Renderer>().material = f_material;
+            if (timeCountF >= 1.5)
+            {
+                timeCountF = 0f;
+                isFrozen = false;
+                speed = 3;
+                GetComponent<Renderer>().material = objColor;
             }
         }
     }
