@@ -61,7 +61,7 @@ public class PlayerController : Unit
         //Player shoot
         if (armed.active)
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 if (Time.time - lfireTime > fireinterval)
                 {
