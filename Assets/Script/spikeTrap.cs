@@ -8,6 +8,8 @@ public class spikeTrap: Unit
 
 	bool isActivate;
 	float _t;
+    private Material open_material;
+    private Material close_material;
 
     // Use this for initialization
     // Use this for initialization
@@ -17,6 +19,9 @@ public class spikeTrap: Unit
         isActivate = false;
         _t = 0f;
         gameObject.GetComponent<Renderer>().material.color = Color.black;
+
+        open_material = Resources.Load("Spike", typeof(Material)) as Material;
+        close_material = Resources.Load("SpikeClose", typeof(Material)) as Material;
     }
 
 	
@@ -28,13 +33,15 @@ public class spikeTrap: Unit
 		if (_t >= 8 && !isActivate)
 		{
 			isActivate = true;
-			_t = 0f;
+            GetComponent<Renderer>().material = open_material;
+            _t = 0f;
 			gameObject.GetComponent<Renderer>().material.color = Color.white;
         }
 		if (_t >= 8 && isActivate)
 		{
 			isActivate = false;
-			_t = 0f;
+            GetComponent<Renderer>().material = close_material;
+            _t = 0f;
             gameObject.GetComponent<Renderer>().material.color = Color.black;
         }
 	}
