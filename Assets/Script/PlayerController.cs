@@ -8,8 +8,11 @@ public class PlayerController : Unit
 
     //variables used for shooting
     public GameObject bulletPrefab;
-    public GameObject armed;
+    public GameObject bowHolder;
+    public GameObject swordHolder;
+    public GameObject wandHolder;
     private GameObject pre_weapon;
+    private GameObject pre_object;
     private float fireinterval;
     private Transform bulletSpawn;
     private float lfireTime;
@@ -43,7 +46,9 @@ public class PlayerController : Unit
     // Use this for initialization
     public override void Start()
     {
-        armed.SetActive(false);
+        bowHolder.SetActive(false);
+        swordHolder.SetActive(false);
+        wandHolder.SetActive(false);
         hp = 100;
         if (dmg <= 0)
         {
@@ -69,7 +74,7 @@ public class PlayerController : Unit
     void Update()
     {
         //Player shoot
-        if (armed.active)
+        if (swordHolder.active || bowHolder.active || wandHolder.active)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
@@ -146,7 +151,40 @@ public class PlayerController : Unit
         {
             bulletPrefab = other.GetComponent<ItemHolder>().info.bulletObject;
             fireinterval = other.GetComponent<ItemHolder>().info.fireinterval;
-            armed.SetActive(true);
+            if (other.gameObject.name == "Bow")
+            {
+                bowHolder.SetActive(true);
+                if (pre_object != null)
+                {
+                    pre_object.SetActive(false);
+                    pre_object = bowHolder;
+                }
+                else
+                    pre_object = bowHolder;
+
+            }
+            else if (other.gameObject.name == "Sword")
+            {
+                swordHolder.SetActive(true);
+                if (pre_object != null)
+                {
+                    pre_object.SetActive(false);
+                    pre_object = swordHolder;
+                }
+                else
+                    pre_object = swordHolder;
+            }
+            else if (other.gameObject.name == "Wand")
+            {
+                wandHolder.SetActive(true);
+                if (pre_object != null)
+                {
+                    pre_object.SetActive(false);
+                    pre_object = wandHolder;
+                }
+                else
+                    pre_object = wandHolder;
+            }
             other.gameObject.SetActive(false);
             if (pre_weapon != null)
             {
