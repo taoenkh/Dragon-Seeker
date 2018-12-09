@@ -44,6 +44,18 @@ public class SceneController : MonoBehaviour {
 		SceneManager.LoadScene("MenuStart");
 		Time.timeScale = 1;
 	}
+    public void QuitGame()
+    {
+
+        SceneManager.LoadScene("MenuStart");
+        Time.timeScale = 1;
+    }
+    public void ToMainScene()
+    {
+
+        SceneManager.LoadScene("MainScene");
+        Time.timeScale = 1;
+    }
 
     public void ToStage2()
     {
@@ -56,6 +68,13 @@ public class SceneController : MonoBehaviour {
     {
 
         SceneManager.LoadScene("Stage3");
+        Time.timeScale = 1;
+    }
+
+    public void ToStage4()
+    {
+
+        SceneManager.LoadScene("Stage4");
         Time.timeScale = 1;
     }
 
