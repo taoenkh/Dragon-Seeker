@@ -11,6 +11,14 @@ public class PlayerController : Unit
     public GameObject bowHolder;
     public GameObject swordHolder;
     public GameObject wandHolder;
+    public AudioClip wandPickup;
+    public AudioClip swordPickup;
+    public AudioClip bowPickup;
+    public AudioClip wandFire;
+    public AudioClip swordFire;
+    public AudioClip bowFire;
+    public AudioClip spikeSound;
+    public AudioClip iceSound;
     private GameObject pre_weapon;
     private GameObject pre_object;
     private float fireinterval;
@@ -80,6 +88,18 @@ public class PlayerController : Unit
             {
                 if (Time.time - lfireTime > fireinterval)
                 {
+                    if (swordHolder.active)
+                    {
+                        AudioSource.PlayClipAtPoint(swordFire, transform.position);
+                    }
+                    else if (bowHolder.active)
+                    {
+                        AudioSource.PlayClipAtPoint(bowFire, transform.position);
+                    }
+                    else if (wandHolder.active)
+                    {
+                        AudioSource.PlayClipAtPoint(wandFire, transform.position);
+                    }
                     lfireTime = Time.time;
                     bulletSpawn = this.gameObject.transform.GetChild(2);
                     shoot();
@@ -154,6 +174,7 @@ public class PlayerController : Unit
             if (other.gameObject.name == "Bow")
             {
                 bowHolder.SetActive(true);
+                AudioSource.PlayClipAtPoint(bowPickup, transform.position);
                 if (pre_object != null)
                 {
                     pre_object.SetActive(false);
@@ -166,6 +187,7 @@ public class PlayerController : Unit
             else if (other.gameObject.name == "Sword")
             {
                 swordHolder.SetActive(true);
+                AudioSource.PlayClipAtPoint(swordPickup, transform.position);
                 if (pre_object != null)
                 {
                     pre_object.SetActive(false);
@@ -177,6 +199,7 @@ public class PlayerController : Unit
             else if (other.gameObject.name == "Wand")
             {
                 wandHolder.SetActive(true);
+                AudioSource.PlayClipAtPoint(wandPickup, transform.position);
                 if (pre_object != null)
                 {
                     pre_object.SetActive(false);

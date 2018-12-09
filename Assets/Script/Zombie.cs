@@ -6,26 +6,59 @@ public class Zombie : Enemy
 {
 
     //public GameObject player1;
-
+    public int hp;
+    public int dmg = 1;
+    private Material attackedMaterial;
+    private float timecountattack;
     public float distance;
     public Transform[] movespots;
     Transform currentPartolPoint;
     int currentPartolIndex;
     bool chase = false;
+    private Material n_material;
+    private Material blood_material;
+
+    public bool isHit;
 
 
     // Use this for initialization
     public override void Start()
     {
         base.Start();
+        hp = 4;
         currentPartolIndex = 0;
+
+        timecountattack = 0f;
+        isHit = false;
+
         currentPartolPoint = movespots[currentPartolIndex];
+        n_material = Resources.Load("Enemy", typeof(Material)) as Material;
+        blood_material = Resources.Load("Enemygothit", typeof(Material)) as Material;
     }
 
     // Update is called once per frame
+    public void decrease_hp()
+    {
+        hp = hp - dmg;
+        if (hp < 0) hp = 0;
+        //Debug.Log("called "+hp.ToString() + " blodd");
+    }
+
+
     void Update()
     {
+        if (isHit && timecountattack >= 0 && timecountattack <= 0.5)
+        {
+            timecountattack += Time.deltaTime;
+            GetComponent<Renderer>().material = blood_material;
+        }
 
+        if (isHit && timecountattack > 0.5)
+        {
+            timecountattack = 0f;
+            isHit = false;
+            GetComponent<Renderer>().material = n_material;
+        }
 
     }
 
@@ -63,14 +96,14 @@ public class Zombie : Enemy
             //Debug.Log(Vector3.Distance(transform.position, currentPartolPoint.position));
             if (Vector3.Distance(transform.position, currentPartolPoint.position) < .1f)
             {
-                Debug.Log("reached the point");
+                //Debug.Log("reached the point");
                 if (currentPartolIndex + 1 < movespots.Length)
                 {
                     //Debug.Log("not full yet");
                     currentPartolIndex++;
                 }
                 else
-            
+
                 {
                     //Debug.Log("inside else");
                     currentPartolIndex = 0;

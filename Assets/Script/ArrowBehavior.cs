@@ -30,9 +30,44 @@ public class ArrowBehavior : MonoBehaviour
         }
         else if (other.CompareTag("Enemy"))
         {
-            print("ya-ha");
             Destroy(this.gameObject);
-            Destroy(other.gameObject);
+
+            other.gameObject.GetComponent<Zombie>().dmg = 1;
+
+            other.gameObject.GetComponent<Zombie>().decrease_hp();
+
+            other.gameObject.GetComponent<Zombie>().isHit = true;
+
+            Debug.Log(other.gameObject.GetComponent<Zombie>().hp);
+            if (other.gameObject.GetComponent<Zombie>().hp <= 0)
+            {
+
+
+                Destroy(other.gameObject);
+            }
+
+
+        }
+        else if (other.CompareTag("Arrower"))
+        {
+
+            other.gameObject.GetComponent<Arrower>().dmg = 1;
+
+            other.gameObject.GetComponent<Arrower>().decrease_hp();
+
+            other.gameObject.GetComponent<Arrower>().isHit = true;
+
+            Debug.Log(other.gameObject.GetComponent<Arrower>().hp);
+            if (other.gameObject.GetComponent<Arrower>().hp <= 0)
+            {
+
+
+                Destroy(other.gameObject);
+            }
+
+
+
+
         }
     }
 }

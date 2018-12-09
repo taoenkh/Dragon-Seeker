@@ -10,6 +10,7 @@ public class spikeTrap: Unit
 	float _t;
     private Material open_material;
     private Material close_material;
+    private AudioClip spikeSound;
 
     // Use this for initialization
     // Use this for initialization
@@ -50,8 +51,10 @@ public class spikeTrap: Unit
         //Debug.Log("entered"); 
         
         if (other.gameObject.CompareTag("Player") && isActivate ) {
+            spikeSound = other.gameObject.GetComponent<PlayerController>().spikeSound;
             other.gameObject.GetComponent<PlayerController>().dmg = (other.gameObject.GetComponent<PlayerController>().dmg + 19);
             other.gameObject.GetComponent<PlayerController>().decrease_hp();
+            AudioSource.PlayClipAtPoint(spikeSound, transform.position);
             other.gameObject.GetComponent<PlayerController>().show_hp();
             other.gameObject.GetComponent<PlayerController>().reduce_hpbar();
             other.gameObject.GetComponent<PlayerController>().dmg = (other.gameObject.GetComponent<PlayerController>().dmg - 19);

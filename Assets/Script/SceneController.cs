@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour {
 	public GameObject loseText;
 	public GameObject restartButton;
 
+
     //gameOver event variables
     public UnityEvent GameOver;
 
@@ -23,8 +24,9 @@ public class SceneController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        
+
+    }
 
 	//Function called by gameOver event 
 	public void gameOver() {
@@ -42,4 +44,25 @@ public class SceneController : MonoBehaviour {
 		SceneManager.LoadScene("MenuStart");
 		Time.timeScale = 1;
 	}
+
+    public void ToStage2()
+    {
+
+        SceneManager.LoadScene("Stage2");
+        Time.timeScale = 1;
+    }
+
+    public void ToStage3()
+    {
+
+        SceneManager.LoadScene("Stage3");
+        Time.timeScale = 1;
+    }
+
+    public void WinScene()
+    {
+
+        SceneManager.LoadScene("Win");
+        Time.timeScale = 1;
+    }
 }

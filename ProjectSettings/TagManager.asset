@@ -10,6 +10,8 @@ TagManager:
   - Marsh
   - Spike
   - Frozen
+  - Arrower
+  - Exit
   layers:
   - Default
   - TransparentFX
