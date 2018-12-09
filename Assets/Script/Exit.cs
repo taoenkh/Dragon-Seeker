@@ -26,7 +26,8 @@ public class Exit : Unit
         m_Scene = SceneManager.GetActiveScene();
 
         if (!isActive){
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0) {
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 &&
+                GameObject.FindGameObjectsWithTag("Arrower").Length == 0) {
                 gameObject.GetComponent<Renderer>().enabled = true;
                 isActive = true;
             }

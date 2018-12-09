@@ -24,7 +24,8 @@ public class BossArrow : MonoBehaviour {
     void Update()
     {
 
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2((player.transform.position - transform.position).y, (player.transform.position - transform.position).x) * Mathf.Rad2Deg - 90);         transform.Translate(Vector3.Normalize(player.transform.position - transform.position) * Time.deltaTime * velocity, Space.World);
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2((player.transform.position - transform.position).y, (player.transform.position - transform.position).x) * Mathf.Rad2Deg - 90);
+        transform.Translate(Vector3.Normalize(player.transform.position - transform.position) * Time.deltaTime * velocity, Space.World);
     }
 
     private void OnTriggerEnter(Collider other)
