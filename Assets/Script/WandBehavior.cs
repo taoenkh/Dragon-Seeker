@@ -9,6 +9,9 @@ public class WandBehavior : MonoBehaviour
 
     public float liveTime = 1f;
 
+	public GameObject fireFiledPrefab;
+
+
 
     void Start()
     {
@@ -18,7 +21,7 @@ public class WandBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Translate(new Vector3(0, (float)0.5, 0) * velocity);
+		transform.Translate(new Vector3(-(float)1, 0, 0) * velocity);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,44 +32,16 @@ public class WandBehavior : MonoBehaviour
         }
         else if (other.CompareTag("Enemy"))
         {
+			GameObject obj = (GameObject)Instantiate(fireFiledPrefab, transform.position + new Vector3(0, 0, 0.5f), transform.rotation);
+
             Destroy(this.gameObject);
-
-            other.gameObject.GetComponent<Zombie>().dmg = 1;
-
-            other.gameObject.GetComponent<Zombie>().decrease_hp();
-
-            other.gameObject.GetComponent<Zombie>().isHit = true;
-
-            Debug.Log(other.gameObject.GetComponent<Zombie>().hp);
-            if (other.gameObject.GetComponent<Zombie>().hp <= 0)
-            {
-
-
-                Destroy(other.gameObject);
-            }
-
-
         }
         else if (other.CompareTag("Arrower"))
         {
 
-            other.gameObject.GetComponent<Arrower>().dmg = 1;
+			GameObject obj = (GameObject)Instantiate(fireFiledPrefab, transform.position + new Vector3(0, 0, 0.5f), transform.rotation);
 
-            other.gameObject.GetComponent<Arrower>().decrease_hp();
-
-            other.gameObject.GetComponent<Arrower>().isHit = true;
-
-            Debug.Log(other.gameObject.GetComponent<Arrower>().hp);
-            if (other.gameObject.GetComponent<Arrower>().hp <= 0)
-            {
-
-
-                Destroy(other.gameObject);
-            }
-
-
-
-
+			Destroy(this.gameObject);         
         }
     }
 }

@@ -16,6 +16,7 @@ public class Exit : Unit
         this.isActive = false;
         SC = GameObject.Find("SceneController");
         gameObject.GetComponent<Renderer>().enabled = false;
+		gameObject.GetComponent<Collider>().enabled = false;
 
     }
 	
@@ -26,8 +27,9 @@ public class Exit : Unit
         m_Scene = SceneManager.GetActiveScene();
 
         if (!isActive){
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0) {
+			if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && GameObject.FindGameObjectsWithTag("Arrower").Length == 0) {
                 gameObject.GetComponent<Renderer>().enabled = true;
+				gameObject.GetComponent<Collider>().enabled = true;
                 isActive = true;
             }
         }

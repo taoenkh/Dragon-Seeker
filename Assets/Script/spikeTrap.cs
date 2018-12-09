@@ -11,6 +11,7 @@ public class spikeTrap: Unit
     private Material open_material;
     private Material close_material;
     private AudioClip spikeSound;
+	bool hasAttacked = false;
 
     // Use this for initialization
     // Use this for initialization
@@ -31,26 +32,28 @@ public class spikeTrap: Unit
 
 		_t += Time.deltaTime;
 
-		if (_t >= 8 && !isActivate)
+		if (_t >= 2 && !isActivate)
 		{
 			isActivate = true;
             GetComponent<Renderer>().material = open_material;
             _t = 0f;
 			gameObject.GetComponent<Renderer>().material.color = Color.white;
         }
-		if (_t >= 8 && isActivate)
+		if (_t >= 2 && isActivate)
 		{
 			isActivate = false;
+			hasAttacked = false;
             GetComponent<Renderer>().material = close_material;
             _t = 0f;
             gameObject.GetComponent<Renderer>().material.color = Color.black;
         }
 	}
-
+    
     private void OnTriggerEnter(Collider other) {
         //Debug.Log("entered"); 
         
         if (other.gameObject.CompareTag("Player") && isActivate ) {
+			hasAttacked = true;
             spikeSound = other.gameObject.GetComponent<PlayerController>().spikeSound;
             other.gameObject.GetComponent<PlayerController>().dmg = (other.gameObject.GetComponent<PlayerController>().dmg + 19);
             other.gameObject.GetComponent<PlayerController>().decrease_hp();
@@ -59,5 +62,19 @@ public class spikeTrap: Unit
             other.gameObject.GetComponent<PlayerController>().reduce_hpbar();
             other.gameObject.GetComponent<PlayerController>().dmg = (other.gameObject.GetComponent<PlayerController>().dmg - 19);
         }
-    } 
+    }
+
+	private void OnTriggerStay(Collider other){
+		if (other.gameObject.CompareTag("Player") && isActivate && !hasAttacked)
+        {
+			hasAttacked = true;
+            spikeSound = other.gameObject.GetComponent<PlayerController>().spikeSound;
+            other.gameObject.GetComponent<PlayerController>().dmg = (other.gameObject.GetComponent<PlayerController>().dmg + 19);
+            other.gameObject.GetComponent<PlayerController>().decrease_hp();
+            AudioSource.PlayClipAtPoint(spikeSound, transform.position);
+            other.gameObject.GetComponent<PlayerController>().show_hp();
+            other.gameObject.GetComponent<PlayerController>().reduce_hpbar();
+            other.gameObject.GetComponent<PlayerController>().dmg = (other.gameObject.GetComponent<PlayerController>().dmg - 19);
+        }
+	}
 }

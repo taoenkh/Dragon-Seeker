@@ -11,14 +11,15 @@ public class Zombie : Enemy
     private Material attackedMaterial;
     private float timecountattack;
     public float distance;
-    public Transform[] movespots;
-    Transform currentPartolPoint;
-    int currentPartolIndex;
     bool chase = false;
     private Material n_material;
     private Material blood_material;
 
     public bool isHit;
+
+	public float timeInterval;
+    private float lastChangeTime;
+    private float angle;
 
 
     // Use this for initialization
@@ -26,14 +27,15 @@ public class Zombie : Enemy
     {
         base.Start();
         hp = 4;
-        currentPartolIndex = 0;
 
         timecountattack = 0f;
         isHit = false;
-
-        currentPartolPoint = movespots[currentPartolIndex];
+        
         n_material = Resources.Load("Enemy", typeof(Material)) as Material;
         blood_material = Resources.Load("Enemygothit", typeof(Material)) as Material;
+
+		timeInterval = 1.5f;
+        lastChangeTime = 0;
     }
 
     // Update is called once per frame
@@ -92,32 +94,24 @@ public class Zombie : Enemy
         {
             transform.Translate(Vector3.up * Time.deltaTime * speed);
 
+			if (Time.time - lastChangeTime > timeInterval)
+			{
+				lastChangeTime = Time.time;
+				angle = 360f * Random.Range(-1.0f, 1.0f);
+				Quaternion q = Quaternion.AngleAxis(angle, transform.forward);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 360f);
+			}
+        }
+    }
 
-            //Debug.Log(Vector3.Distance(transform.position, currentPartolPoint.position));
-            if (Vector3.Distance(transform.position, currentPartolPoint.position) < .1f)
-            {
-                //Debug.Log("reached the point");
-                if (currentPartolIndex + 1 < movespots.Length)
-                {
-                    //Debug.Log("not full yet");
-                    currentPartolIndex++;
-                }
-                else
-
-                {
-                    //Debug.Log("inside else");
-                    currentPartolIndex = 0;
-                }
-                currentPartolPoint = movespots[currentPartolIndex];
-            }
-
-            Vector3 patrolPointDir = currentPartolPoint.position - transform.position;
-            float angle = Mathf.Atan2(patrolPointDir.y, patrolPointDir.x) * Mathf.Rad2Deg - 90f;
-
-
-
-            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
+	private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
+            lastChangeTime = Time.time;
+            angle = angle + 180;
+            Quaternion q = Quaternion.AngleAxis(angle, transform.forward);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 360f);
         }
     }
 

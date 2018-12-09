@@ -36,11 +36,11 @@ public class EnemyArrow : MonoBehaviour
         else if (other.CompareTag("Player"))
         {
             Destroy(this.gameObject);
-            //other.gameObject.GetComponent<PlayerController>().dmg = (other.gameObject.GetComponent<PlayerController>().dmg - 1);
+			other.gameObject.GetComponent<PlayerController>().dmg = (other.gameObject.GetComponent<PlayerController>().dmg + 9);
             other.gameObject.GetComponent<PlayerController>().decrease_hp();
             other.gameObject.GetComponent<PlayerController>().show_hp();
             other.gameObject.GetComponent<PlayerController>().reduce_hpbar();
-            //other.gameObject.GetComponent<PlayerController>().dmg = (other.gameObject.GetComponent<PlayerController>().dmg + 1);
+			other.gameObject.GetComponent<PlayerController>().dmg = (other.gameObject.GetComponent<PlayerController>().dmg - 9);
         }
     }
 }

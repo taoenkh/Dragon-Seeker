@@ -17,20 +17,20 @@ public class ArrowBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Translate(new Vector3(0, (float)0.5, 0) * velocity);
+		transform.Translate(new Vector3(-(float)1, 0, 0) * velocity);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.tag);
         if (other.CompareTag("Obstacle"))
         {
-            print("ummmm");
+			Debug.Log("opps");
             Destroy(this.gameObject);
         }
         else if (other.CompareTag("Enemy"))
         {
             Destroy(this.gameObject);
+			Debug.Log("opps");
 
             other.gameObject.GetComponent<Zombie>().dmg = 1;
 
@@ -50,6 +50,7 @@ public class ArrowBehavior : MonoBehaviour
         }
         else if (other.CompareTag("Arrower"))
         {
+			Destroy(this.gameObject);
 
             other.gameObject.GetComponent<Arrower>().dmg = 1;
 

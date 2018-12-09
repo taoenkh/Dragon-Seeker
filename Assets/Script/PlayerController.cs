@@ -116,7 +116,7 @@ public class PlayerController : Unit
         {
             timeCountS += Time.deltaTime;
             GetComponent<Renderer>().material = p_material;
-            if (timeCountS >= 4)
+            if (timeCountS >= 2.5)
             {
                 timeCountS = 0f;
                 isSlowDown = false;
@@ -228,6 +228,7 @@ public class PlayerController : Unit
     private void shoot()
     {
         GameObject obj = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+		obj.transform.localScale = obj.transform.localScale * 2;
     }
 
     public void decrease_hp()
