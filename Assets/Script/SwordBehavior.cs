@@ -7,7 +7,7 @@ public class SwordBehavior : MonoBehaviour
 
     public float velocity;
 
-    public float liveTime = 0.3f;
+    public float liveTime = 0.7f;
 
     // Use this for initialization
     void Start()
