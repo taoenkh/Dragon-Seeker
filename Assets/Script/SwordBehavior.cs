@@ -19,7 +19,7 @@ public class SwordBehavior : MonoBehaviour
     void FixedUpdate()
     {
         //transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(1, 0, 1), 0.01f);
-        transform.Translate(new Vector3(0, (float)0.5, 0) * velocity);
+        transform.Translate(new Vector3(-(float)1, 0, 0) * velocity);
     }
 
     private void OnTriggerEnter(Collider other)
