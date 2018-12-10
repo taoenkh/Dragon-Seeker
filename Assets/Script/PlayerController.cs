@@ -234,6 +234,7 @@ public class PlayerController : Unit
     public void decrease_hp()
     {
         hp = hp - dmg;
+        AudioSource.PlayClipAtPoint(spikeSound, transform.position);
         if (hp < 0) hp = 0;
         //Debug.Log("called "+hp.ToString() + " blodd");
     }
