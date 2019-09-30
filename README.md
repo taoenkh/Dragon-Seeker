@@ -17,3 +17,4 @@ Control the character to pick weapon up or replace weapon by pressing SPACE on k
 
 Control the character to pick weapon up or replace weapon by pressing SPACE on keyboard.
 
+![image](https://user-images.githubusercontent.com/17862052/65917247-ccf3cd80-e38b-11e9-8e19-72a961952c5c.png)
